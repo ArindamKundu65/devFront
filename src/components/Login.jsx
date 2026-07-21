@@ -11,6 +11,7 @@ const Login = () => {
     const [password, setPassword] = useState("aA!2aaaa");
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const [error, setError] = useState("")
 
 
 
@@ -30,7 +31,8 @@ const Login = () => {
         navigate("/");
     }
         catch(err){
-            console.log(err)
+            console.error(err.response)
+            setError(err.response.data);
         }
 
     }
@@ -64,6 +66,7 @@ const Login = () => {
                         />
 
                     </fieldset>
+                    <p className='text-red-400'>{error}</p>
                     <div className="card-actions justify-center">
                         <button className="btn btn-primary"
                         onClick={handleLogin}
