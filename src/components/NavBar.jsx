@@ -37,7 +37,7 @@ const NavBar = () => {
   return (
     <div className="navbar bg-[#38c02b] shadow-sm">
     <div className="flex-1">
-      <Link to="/" className="btn btn-ghost text-xl">devCorner</Link>
+      <Link to="/" className="btn btn-ghost text-xl">DevCorner</Link>
     </div>
    {user && <div className="flex gap-2">
       <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
