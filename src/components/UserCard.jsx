@@ -35,15 +35,18 @@ const UserCard = ({ user }) => {
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">{firstName + " " + lastName}</h2>
-                    <p>
+                    <p className=''>
                         {age && `Age: ${age}, `}
                         {gender && `${gender}, `}
                         {about}
-                        {skills}
+
+                    </p>
+                    <p>
+                        {skills && `Skills: ${skills.join(", ")}`}
                     </p>
                     <div className="card-actions justify-center">
                         <button className="btn btn-primary"
-                        onClick={() => handleRequest("interested", _id)}
+                            onClick={() => handleRequest("interested", _id)}
                         >Sent Request
                         </button>
                         <button className="btn btn-secondary"
