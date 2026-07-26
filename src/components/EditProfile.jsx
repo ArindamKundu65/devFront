@@ -24,7 +24,7 @@ const EditProfile = ({ user }) => {
         setError("")
         try {
             const res = await axios.patch(BASE_URL + "/profile/edit",
-                { firstName, lastName, photoUrl, age, about, gender },
+                { firstName, lastName, photoUrl, age, about, gender,   skills: skills.split(",").map(skill => skill.trim())},
                 { withCredentials: true }
             );
             dispatch(addUser(res?.data?.data));
@@ -152,7 +152,7 @@ const EditProfile = ({ user }) => {
                         </div>
                     </div>
                 </div>
-                <UserCard user={{ firstName, lastName, photoUrl, age, about }} />
+                <UserCard user={{ firstName, lastName, photoUrl, age, about, skills }} />
 
                 {showToast && (<div className="toast toast-top toast-center">
                     <div className="alert alert-success">

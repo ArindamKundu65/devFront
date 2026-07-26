@@ -5,7 +5,7 @@ import { removeUserFromFeed } from '../utils/feedSlice';
 import axios from 'axios';
 
 const UserCard = ({ user }) => {
-    const { _id, firstName, lastName, photoUrl, age, gender, about } = user;
+    const { _id, firstName, lastName, photoUrl, age, gender, about, skills } = user;
 
     const dispatch = useDispatch();
 
@@ -39,6 +39,7 @@ const UserCard = ({ user }) => {
                         {age && `Age: ${age}, `}
                         {gender && `${gender}, `}
                         {about}
+                        {skills}
                     </p>
                     <div className="card-actions justify-center">
                         <button className="btn btn-primary"
