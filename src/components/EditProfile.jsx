@@ -13,6 +13,7 @@ const EditProfile = ({ user }) => {
     const [age, setAge] = useState(user.age || "")
     const [about, setAbout] = useState(user.about)
     const [gender, setGender] = useState(user.gender || "")
+    const [skills, setSkills] = useState(user.skills || "")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [error, setError] = useState("")
@@ -124,6 +125,19 @@ const EditProfile = ({ user }) => {
                                     placeholder="Type here"
                                     onChange={(e) => {
                                         setGender(e.target.value)
+                                    }}
+                                />
+
+                            </fieldset>
+                            <fieldset className="fieldset">
+                                <legend className="fieldset">Skills</legend>
+
+                                <input type="text"
+                                    value={skills}
+                                    className="input"
+                                    placeholder="Type here"
+                                    onChange={(e) => {
+                                        setSkills(e.target.value)
                                     }}
                                 />
 
