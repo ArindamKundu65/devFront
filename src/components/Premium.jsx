@@ -11,7 +11,7 @@ const Premium = () => {
                     <li> - Blue Tick</li>
                     <li> - 3 months</li>
                 </ul>
-                <button className='btn btn-secondary-content'>Buy Sliver</button>
+                <button className='btn bg-gray-400'>Buy Sliver</button>
             </div>
             <div className="divider divider-horizontal">OR</div>
             <div className="card bg-base-300 rounded-box grid h-80 grow place-items-center">
