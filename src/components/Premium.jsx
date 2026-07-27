@@ -11,7 +11,7 @@ const Premium = () => {
                     <li> - Blue Tick</li>
                     <li> - 3 months</li>
                 </ul>
-                <button className='btn btn-secondary'>Buy Sliver</button>
+                <button className='btn btn-neutral'>Buy Sliver</button>
             </div>
             <div className="divider divider-horizontal">OR</div>
             <div className="card bg-base-300 rounded-box grid h-80 grow place-items-center">
@@ -22,7 +22,7 @@ const Premium = () => {
                     <li> - Blue Tick</li>
                     <li> - 6 months</li>
                 </ul>
-                <button className='btn btn-primary'>Buy Gold</button>
+                <button className='btn btn-warning'>Buy Gold</button>
             </div>
         </div>
     )
