@@ -16,6 +16,9 @@ const UserCard = ({ user }) => {
                 { withCredentials: true }
             );
 
+            console.log("API success");
+console.log("Removing:", userId);
+
             dispatch(removeUserFromFeed(userId));
 
         } catch (error) {
