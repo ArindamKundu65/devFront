@@ -13,7 +13,7 @@ const EditProfile = ({ user }) => {
     const [age, setAge] = useState(user.age || "")
     const [about, setAbout] = useState(user.about)
     const [gender, setGender] = useState(user.gender || "")
-    const [skills, setSkills] = useState(user.skills || "")
+    const [skills, setSkills] = useState(user.skills?.join(", ") || "")
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [error, setError] = useState("")
@@ -28,6 +28,9 @@ const EditProfile = ({ user }) => {
                 { withCredentials: true }
             );
             dispatch(addUser(res?.data?.data));
+
+            console.log("skills:", skills);
+console.log("is array:", Array.isArray(skills));
 
             setShowToast(true);
 
