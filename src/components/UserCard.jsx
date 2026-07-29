@@ -43,10 +43,10 @@ const UserCard = ({ user }) => {
                         {about}
 
                     </p>
-                    {/* <p>
+                    <p>
                         {skills && `Skills: ${skills.join(", ")}`}
-                    </p> */}
-                    <p>{JSON.stringify(skills)}</p>
+                    </p>
+                    {/* <p>{JSON.stringify(skills)}</p> */}
                     <div className="card-actions justify-center">
                         <button className="btn btn-primary"
                             onClick={() => handleRequest("interested", _id)}

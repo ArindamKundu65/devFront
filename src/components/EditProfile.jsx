@@ -155,7 +155,7 @@ console.log("is array:", Array.isArray(skills));
                         </div>
                     </div>
                 </div>
-                <UserCard user={{ firstName, lastName, photoUrl, age, about, skills }} />
+                <UserCard user={{ firstName, lastName, photoUrl, age, about,  skills: skills.split(",").map(skill => skill.trim()) }} />
 
                 {showToast && (<div className="toast toast-top toast-center">
                     <div className="alert alert-success">
