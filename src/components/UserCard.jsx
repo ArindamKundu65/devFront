@@ -19,6 +19,8 @@ const UserCard = ({ user }) => {
             dispatch(removeUserFromFeed(userId));
 
         } catch (error) {
+            console.log(skills);
+            console.log(Array.isArray(skills));
             console.log(error.response.data.message);
 
         }
@@ -41,9 +43,10 @@ const UserCard = ({ user }) => {
                         {about}
 
                     </p>
-                    <p>
+                    {/* <p>
                         {skills && `Skills: ${skills.join(", ")}`}
-                    </p>
+                    </p> */}
+                    <p>{JSON.stringify(skills)}</p>
                     <div className="card-actions justify-center">
                         <button className="btn btn-primary"
                             onClick={() => handleRequest("interested", _id)}
