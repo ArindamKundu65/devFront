@@ -4,6 +4,18 @@ import { BASE_URL } from '../utils/constants'
 
 const Premium = () => {
 
+    const [isUserPremium, setIsUserPremium] = useState(false)
+
+    const verifyPremiumUser = async () => {
+        const res = await axios.get(BASE_URL + "/premium/verify", 
+            {withCredentials:true}
+        )
+
+        if(res.data.isPremium) {
+            setIsUserPremium(true)
+        }
+    }
+
     const handleBuyClick = async (type) => {
 
         try {
@@ -36,6 +48,7 @@ const Premium = () => {
                 theme: {
                     color: '#AAFF00'
                 },
+                handler : verifyPremiumUser
             };
 
             const rzp = new Razorpay(options);
@@ -47,7 +60,7 @@ const Premium = () => {
     };
 
 
-    return (
+    return isUserPremium ? "You are already a Premium user" : (
         <div className="flex w-full mt-10">
 
             <div className="card bg-base-300 rounded-box grid h-80 grow place-items-center">
@@ -101,7 +114,7 @@ const Premium = () => {
             </div>
 
         </div>
-    )
+    ) 
 }
 
 export default Premium
