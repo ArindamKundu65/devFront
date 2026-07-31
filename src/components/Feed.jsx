@@ -17,9 +17,10 @@ const Feed = () => {
     );
     dispatch(addFeed(res?.data));
   }
-    catch(err){
-      console.error(err)
-    }
+  catch (err) {
+    console.log(err.response?.status);
+    console.log(err.response?.data);
+  }
 
   }
 
