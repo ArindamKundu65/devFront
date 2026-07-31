@@ -17,6 +17,8 @@ const Feed = () => {
   const dispatch = useDispatch();
 
   const getFeed = async () => {
+    console.log("Fetching page:", page);
+  
     if (!hasMore) return;
   
     try {
@@ -27,6 +29,8 @@ const Feed = () => {
         }
       );
   
+      console.log("API returned:", res.data);
+  
       if (res.data.length === 0) {
         setHasMore(false);
         return;
@@ -34,8 +38,7 @@ const Feed = () => {
   
       dispatch(addFeed(res.data));
     } catch (err) {
-      console.log(err.response?.status);
-      console.log(err.response?.data);
+      console.log(err);
     }
   };
 
@@ -48,6 +51,10 @@ const Feed = () => {
       setPage((prev) => prev + 1);
     }
   }, [feed, hasMore]);
+
+  useEffect(() => {
+    console.log("Feed changed:", feed);
+  }, [feed]);
 
 return (
   <div className="flex justify-center my-10">
