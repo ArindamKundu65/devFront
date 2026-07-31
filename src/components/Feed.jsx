@@ -10,25 +10,27 @@ import UserCard from './UserCard'
 
 const Feed = () => {
 
-  const [loading, setLoading] = useState(true);
+  const [noMoreUsers, setNoMoreUsers] = useState(false);
   
   const feed = useSelector((store) => store.feed)
   const dispatch = useDispatch();
 
   const getFeed = async () => {
-    setLoading(true);
+    if (noMoreUsers) return;
   
     try {
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
       });
   
+      if (res.data.length === 0) {
+        setNoMoreUsers(true);
+        return;
+      }
+  
       dispatch(addFeed(res.data));
     } catch (err) {
-      console.log(err.response?.status);
-      console.log(err.response?.data);
-    } finally {
-      setLoading(false);
+      console.log(err);
     }
   };
 
@@ -38,10 +40,10 @@ const Feed = () => {
   }, []);
 
   useEffect(() => {
-    if (feed && feed.length === 0) {
+    if (!noMoreUsers && feed && feed.length === 0) {
       getFeed();
     }
-  }, [feed]);
+  }, [feed, noMoreUsers]);
 
   useEffect(() => {
     console.log("Feed changed:", feed);
@@ -49,12 +51,12 @@ const Feed = () => {
 
   return (
     <div className="flex justify-center my-10">
-      {loading ? (
-        <h2>Loading...</h2>
-      ) : feed && feed.length > 0 ? (
+      {feed && feed.length > 0 ? (
         <UserCard user={feed[0]} />
-      ) : (
+      ) : noMoreUsers ? (
         <h2>No more users available</h2>
+      ) : (
+        <h2>Loading...</h2>
       )}
     </div>
   );
