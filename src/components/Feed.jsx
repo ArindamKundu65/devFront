@@ -17,40 +17,28 @@ const Feed = () => {
   const dispatch = useDispatch();
 
   const getFeed = async () => {
-    console.log("Fetching page:", page);
-  
-    if (!hasMore) return;
-  
     try {
-      const res = await axios.get(
-        `${BASE_URL}/feed?page=${page}&limit=10`,
-        {
-          withCredentials: true,
-        }
-      );
-  
-      console.log("API returned:", res.data);
-  
-      if (res.data.length === 0) {
-        setHasMore(false);
-        return;
-      }
+      const res = await axios.get(BASE_URL + "/feed", {
+        withCredentials: true,
+      });
   
       dispatch(addFeed(res.data));
     } catch (err) {
-      console.log(err);
+      console.log(err.response?.status);
+      console.log(err.response?.data);
     }
   };
 
-  useEffect(() => {
-    getFeed();
-  }, [page]);
 
   useEffect(() => {
-    if (hasMore && feed && feed.length === 0) {
-      setPage((prev) => prev + 1);
+    getFeed();
+  }, []);
+
+  useEffect(() => {
+    if (feed && feed.length === 0) {
+      getFeed();
     }
-  }, [feed, hasMore]);
+  }, [feed]);
 
   useEffect(() => {
     console.log("Feed changed:", feed);
