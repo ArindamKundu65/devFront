@@ -40,7 +40,7 @@ const NavBar = () => {
       <Link to="/" className="btn btn-ghost text-xl">DevCorner</Link>
     </div>
    {user && <div className="flex gap-2">
-      <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+      {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
       <div className="dropdown dropdown-end me-4 flex">
 
       <p className='px-4 pt-2'>Welcome {user.firstName}</p>
