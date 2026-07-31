@@ -16,14 +16,22 @@ const Feed = () => {
   const dispatch = useDispatch();
 
   const getFeed = async () => {
-    if (noMoreUsers) return;
+    console.log("getFeed called");
+  
+    if (noMoreUsers) {
+      console.log("Returning because noMoreUsers is true");
+      return;
+    }
   
     try {
       const res = await axios.get(BASE_URL + "/feed", {
         withCredentials: true,
       });
   
+      console.log("API response:", res.data);
+  
       if (res.data.length === 0) {
+        console.log("No users left");
         setNoMoreUsers(true);
         return;
       }
@@ -48,6 +56,12 @@ const Feed = () => {
   useEffect(() => {
     console.log("Feed changed:", feed);
   }, [feed]);
+
+  useEffect(() => {
+    console.log("Effect fired");
+    console.log("feed:", feed);
+    console.log("noMoreUsers:", noMoreUsers);
+  }, [feed, noMoreUsers]);
 
   return (
     <div className="flex justify-center my-10">
