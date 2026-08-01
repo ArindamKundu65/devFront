@@ -47,6 +47,8 @@ const Connections = () => {
                             {age && gender && <p>{age + " " + gender}</p>}
                             {<p>{skills}</p>}
                         </div>
+                        <button className='btn btn-primary'>Chat</button>
+
                         
                     </div>
                 )
