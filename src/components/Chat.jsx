@@ -11,7 +11,7 @@ const Chat = () => {
       </div>
 
 
-      <div>
+      <div className='p-5 border-t border-gray-600 flex items-center gap-2'>
         <input className=''></input>
         <button>Send</button>
 
