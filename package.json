@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-     "deploy": "git add . && git commit -m \"Update project\" && git push"
+    "deploy": "git add . && git commit -m \"Update project\" && git push"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.12.0",
@@ -19,6 +19,7 @@
     "react-dom": "^19.2.7",
     "react-redux": "^9.3.0",
     "react-router-dom": "^7.18.1",
+    "socket.io-client": "^4.8.3",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
