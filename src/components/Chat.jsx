@@ -13,8 +13,8 @@ const Chat = () => {
         {
         messages.map((msg, index)=> {
           
-          return(<div className="chat chat-start">
-            <div key={index} className="chat-header">
+          return(<div key={index} className="chat chat-start">
+            <div  className="chat-header">
               Obi-Wan Kenobi
               <time className="text-xs opacity-50">2 hours ago</time>
             </div>
