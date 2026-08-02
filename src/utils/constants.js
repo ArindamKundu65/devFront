@@ -1,1 +1,1 @@
-export const BASE_URL = "https://devcorner-jqtp.onrender.com";
+export const BASE_URL =  "https://dev-front-ruby.vercel.app";

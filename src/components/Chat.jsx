@@ -10,13 +10,33 @@ const Chat = () => {
     const userId = user?._id;
 
   useEffect(()=> {
+
+    if(!userId) {
+      return;
+    }
     const socket = createSocketConnection();
     socket.emit("joinChat", { userId, targetUserId });
 
     return () => {
       socket.disconnect();
-    }
-  }, [])
+    };
+  }, [userId, targetUserId])
+
+  useEffect(() => {
+    console.log("Chat mounted");
+  
+    const socket = createSocketConnection();
+  
+    socket.on("connect", () => {
+      console.log("Socket connected:", socket.id);
+    });
+  
+    socket.on("connect_error", (err) => {
+      console.log("Connect error:", err.message);
+    });
+  
+    return () => socket.disconnect();
+  }, []);
 
   return (
     <div className='w-1/2 mx-auto border border-gray-600 m-5 h-[70vh] flex flex-col'>
