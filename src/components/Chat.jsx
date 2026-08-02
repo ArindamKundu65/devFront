@@ -15,7 +15,7 @@ const Chat = () => {
       return;
     }
     const socket = createSocketConnection();
-    socket.emit("joinChat", { userId, targetUserId });
+    socket.emit("joinChat", { firstName: user.firstName, userId, targetUserId });
 
     return () => {
       socket.disconnect();
