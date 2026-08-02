@@ -19,6 +19,9 @@ const Chat = () => {
     const socket = createSocketConnection();
     socket.emit("joinChat", { firstName: user.firstName, userId, targetUserId });
 
+    socket.on("messageReceived", ({ firstName, text})=>{
+      console.log(firstName + " :  " + text);
+    } )
     return () => {
       socket.disconnect();
     };
