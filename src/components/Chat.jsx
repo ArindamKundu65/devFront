@@ -21,7 +21,7 @@ const Chat = () => {
 
     socket.on("messageReceived", ({ firstName, text})=>{
       console.log(firstName + " :  " + text);
-      setMessages([...messages, { firstName, text }])
+      setMessages( (messages) => [...messages, { firstName, text }])
     } )
     return () => {
       socket.disconnect();
@@ -36,6 +36,7 @@ const sendMessage = () => {
     targetUserId,
     text: newMessage
   })
+  setNewMessage("")
 }
 
   return (
