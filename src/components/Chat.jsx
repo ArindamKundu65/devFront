@@ -18,6 +18,12 @@ const Chat = () => {
         withCredentials: true
       });
       console.log(chat.data.messages);
+
+      const chatMessages = chat?.data?.messages.map((map)=> {
+        const { senderId, text } = msg;
+        return { firstName: senderId?.firstName, lastName: senderId?.lastName, text}
+      })
+      setMessages(chatMessages); 
     };
 
     useEffect(() => {
@@ -32,9 +38,9 @@ const Chat = () => {
     const socket = createSocketConnection();
     socket.emit("joinChat", { firstName: user.firstName, userId, targetUserId });
 
-    socket.on("messageReceived", ({ firstName, text})=>{
+    socket.on("messageReceived", ({ firstName, lastName, text})=>{
       console.log(firstName + " :  " + text);
-      setMessages( (messages) => [...messages, { firstName, text }])
+      setMessages( (messages) => [...messages, { firstName, lastName, text }])
     } )
     return () => {
       socket.disconnect();
@@ -45,6 +51,7 @@ const sendMessage = () => {
   const socket = createSocketConnection();
   socket.emit("sendMessage", {
     firstName: user.firstName,
+    lastName: user.lastName,
     userId,
     targetUserId,
     text: newMessage
@@ -63,7 +70,7 @@ const sendMessage = () => {
           
           return(<div key={index} className="chat chat-start">
             <div  className="chat-header">
-              {msg.firstName}
+              {msg.firstName +" "+ msg.lastName}
               <time className="text-xs opacity-50">2 hours ago</time>
             </div>
             <div className="chat-bubble">{msg.text}</div>
