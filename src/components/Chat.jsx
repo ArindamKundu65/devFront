@@ -19,7 +19,7 @@ const Chat = () => {
       });
       console.log(chat.data.messages);
 
-      const chatMessages = chat?.data?.messages.map((map)=> {
+      const chatMessages = chat?.data?.messages.map((msg)=> {
         const { senderId, text } = msg;
         return { firstName: senderId?.firstName, lastName: senderId?.lastName, text}
       })
