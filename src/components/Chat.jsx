@@ -6,7 +6,7 @@ import { Socket } from 'socket.io-client';
 
 const Chat = () => {
     const { targetUserId } = useParams();
-    const [messages, setMessages] = useState([{text: "Hello World"}])
+    const [messages, setMessages] = useState([])
     const [newMessage, setNewMessage] = useState("");
     const user = useSelector(store => store.user);
     const userId = user?._id;
@@ -21,6 +21,7 @@ const Chat = () => {
 
     socket.on("messageReceived", ({ firstName, text})=>{
       console.log(firstName + " :  " + text);
+      setMessages([...messages, { firstName, text }])
     } )
     return () => {
       socket.disconnect();
@@ -48,10 +49,10 @@ const sendMessage = () => {
           
           return(<div key={index} className="chat chat-start">
             <div  className="chat-header">
-              Obi-Wan Kenobi
+              {msg.firstName}
               <time className="text-xs opacity-50">2 hours ago</time>
             </div>
-            <div className="chat-bubble">You were the Chosen One!</div>
+            <div className="chat-bubble">{msg.text}</div>
             <div className="chat-footer opacity-50">Seen</div>
           </div>)
         })
