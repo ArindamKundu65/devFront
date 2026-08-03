@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import { createSocketConnection } from '../utils/socket';
 import { useSelector } from 'react-redux';
 import { Socket } from 'socket.io-client';
+import axios from 'axios';
+import { BASE_URL } from '../utils/constants';
 
 const Chat = () => {
     const { targetUserId } = useParams();
@@ -10,6 +12,17 @@ const Chat = () => {
     const [newMessage, setNewMessage] = useState("");
     const user = useSelector(store => store.user);
     const userId = user?._id;
+
+    const fetchChatMessages = async () => {
+      const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
+        withCredentials: true
+      });
+      console.log(chat.data.messages);
+    };
+
+    useEffect(() => {
+      fetchChatMessages();
+    },[])
 
   useEffect(()=> {
 
